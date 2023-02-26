@@ -1,0 +1,30 @@
+{
+    "name": "jannismilz/laravel-docsify",
+    "type": "library",
+    "support": {
+        "issues": "https://github.com/JannisMilz/laravel-docsify/issues",
+        "source": "https://github.com/JannisMilz/laravel-docsify"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "JannisMilz\\Docsify\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [],
+            "providers": [
+                "JannisMilz\\Docsify\\DocsifyServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Jannis Milz",
+            "email": "github@jannismilz.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
