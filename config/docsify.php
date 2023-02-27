@@ -18,6 +18,7 @@ return [
   'docs'        => [
     'route'   => '/docs',
     'path'    => '/documentation',
+    'default_page_title' => env("APP_NAME", "No page title provided")
   ],
 
   /*
@@ -42,6 +43,24 @@ return [
 
   /*
     |--------------------------------------------------------------------------
+    | Cache
+    |--------------------------------------------------------------------------
+    |
+    | Obviously rendering markdown at the back-end is costly especially if
+    | the rendered files are massive. Thankfully, caching is considered
+    | as a good option to speed up your app when having high traffic.
+    |
+    | Caching period unit: minutes
+    |
+    */
+
+  'cache'       => [
+    'enabled' => false,
+    'period'  => 5
+  ],
+
+  /*
+    |--------------------------------------------------------------------------
     | Documentation Settings
     |--------------------------------------------------------------------------
     |
@@ -57,50 +76,8 @@ return [
 
   'settings'       => [
     'auth'       => false,
-    'guard'      => null,
-    'ga_id'      => '',
     'middleware' => [
       'web',
     ]
-  ],
-
-  /*
-    |--------------------------------------------------------------------------
-    | Search
-    |--------------------------------------------------------------------------
-    |
-    | Here you can add configure the search functionality of your docs.
-    | You can choose the default engine of your search from the list
-    | However, you can also enable/disable the search's visibility
-    |
-    | Supported Search Engines: 'algolia', 'internal'
-    |
-    */
-
-  'search' => [
-    'enabled' => false,
-    'index' => ['h2', 'h3']
-  ],
-
-  /*
-    |--------------------------------------------------------------------------
-    | Appearance
-    |--------------------------------------------------------------------------
-    |
-    | Here you can add configure the appearance of your docs. For example,
-    | you can set the primary and secondary colors that will give your
-    | documentation a unique look. You can set the fav of your docs.
-    |
-    |
-    */
-
-  // TODO: Code color themes
-  'ui' => [
-    'colors' => [
-      'primary' => '#787AF6',
-      'secondary' => '#2b9cf2'
-    ],
-    'fav' => '',     // eg: fav.png
-    'show_side_bar' => true,
   ],
 ];

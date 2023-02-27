@@ -15,7 +15,7 @@
         "laravel": {
             "dont-discover": [],
             "providers": [
-                "JannisMilz\\Docsify\\DocsifyServiceProvider"
+                "JannisMilz\\Docsify\\Providers\\DocsifyServiceProvider"
             ]
         }
     },
@@ -25,6 +25,9 @@
             "email": "github@jannismilz.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {}
+    "minimum-stability": "stable",
+    "require": {
+        "erusev/parsedown-extra": "^0.8.1",
+        "symfony/dom-crawler": "^6.2"
+    }
 }

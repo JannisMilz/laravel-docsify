@@ -3,7 +3,7 @@
 namespace JannisMilz\Docsify\Commands;
 
 use Illuminate\Console\Command;
-use JannisMilz\Docsify\DocsifyServiceProvider;
+use JannisMilz\Docsify\Providers\DocsifyServiceProvider;
 use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
