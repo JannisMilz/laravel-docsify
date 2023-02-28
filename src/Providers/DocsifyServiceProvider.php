@@ -1,6 +1,6 @@
 <?php
 
-namespace JannisMilz\Docsify;
+namespace JannisMilz\Docsify\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -17,10 +17,10 @@ class DocsifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'docsify');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'docsify');
 
         Route::group($this->routesConfig(), function () {
-            $this->loadRoutesFrom(__DIR__ . '/../routes/Docsify.php');
+            $this->loadRoutesFrom(__DIR__ . '/../../routes/Docsify.php');
         });
     }
 
@@ -66,15 +66,15 @@ class DocsifyServiceProvider extends ServiceProvider
     protected function registerPublishableResources()
     {
         $publishable = [
-            'docsify_config' => [
-                dirname(__DIR__) . "/config/docsify.php" => config_path('docsify.php'),
+            'config' => [
+                __DIR__ . "/../../config/docsify.php" => config_path('docsify.php'),
             ],
-            'assets' => [
-                __DIR__ . "/../resources/assets/" => public_path('docsify'),
-            ],
-            'views' => [
-                __DIR__ . "/../resources/views" => resource_path('views/vendor/docsify'),
-            ],
+            // 'assets' => [
+            //     __DIR__ . "/../../resources/assets/" => public_path('docsify'),
+            // ],
+            // 'views' => [
+            //     __DIR__ . "/../../resources/views" => resource_path('views/vendor/docsify'),
+            // ],
         ];
 
         foreach ($publishable as $group => $paths) {
@@ -96,6 +96,6 @@ class DocsifyServiceProvider extends ServiceProvider
      */
     protected function registerConfigs()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/docsify.php', 'docsify');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/docsify.php', 'docsify');
     }
 }

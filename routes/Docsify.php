@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\DocumentationController;
+use JannisMilz\Docsify\Http\Controllers\DocumentationController;
 use Illuminate\Support\Facades\Route;
 
 // Styles & Scripts..

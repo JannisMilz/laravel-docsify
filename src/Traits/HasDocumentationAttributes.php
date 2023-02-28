@@ -4,17 +4,17 @@ namespace JannisMilz\Docsify\Traits;
 
 trait HasDocumentationAttributes
 {
-  protected $title;
-  protected $index;
-  protected $version;
-  protected $content;
-  protected $docsRoute;
-  protected $sectionPage;
-  protected $defaultVersion;
-  protected $currentSection;
-  protected $statusCode = 200;
-  protected $publishedVersions;
-  protected $defaultVersionUrl;
+  public $title;
+  public $sidebar;
+  public $version;
+  public $content;
+  public $docsRoute;
+  public $sectionPage;
+  public $defaultVersion;
+  public $currentSection;
+  public $statusCode = 200;
+  public $publishedVersions;
+  public $defaultVersionUrl;
 
   /**
    * @return string
@@ -27,9 +27,9 @@ trait HasDocumentationAttributes
   /**
    * @return mixed
    */
-  public function getIndexAttribute()
+  public function getSidebarAttribute()
   {
-    return $this->index;
+    return $this->sidebar;
   }
 
   /**

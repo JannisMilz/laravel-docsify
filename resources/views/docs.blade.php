@@ -2,6 +2,7 @@
 
 @section('content')
     <div>
+        Docs page!
         @include('docsify::partials.sidebar')
 
         <div class="documentation">

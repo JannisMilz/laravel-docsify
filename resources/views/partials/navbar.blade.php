@@ -4,7 +4,7 @@
     <nav class="flex items-center justify-between text-black bg-navbar shadow-xs h-16">
         <div class="flex items-center flex-no-shrink">
             <a href="{{ url('/') }}" class="flex items-center flex-no-shrink text-black mx-4">
-                @include('docsify::partials.logo')
+                {{-- @include('docsify::partials.logo') --}}
 
                 <p class="inline-block font-semibold mx-1 text-grey-dark">
                     {{ config('app.name') }}
@@ -26,12 +26,12 @@
 
                 <template slot="list">
                     <ul class="list-reset">
-                        @foreach ($versions as $version)
+                        {{-- @foreach ($versions as $version)
                             <li class="py-2 hover:bg-grey-lightest">
                                 <a class="px-6 text-grey-darkest"
                                     href="{{ route('larecipe.show', ['version' => $version, 'page' => $currentSection]) }}">{{ $version }}</a>
                             </li>
-                        @endforeach
+                        @endforeach --}}
                     </ul>
                 </template>
             </larecipe-dropdown>

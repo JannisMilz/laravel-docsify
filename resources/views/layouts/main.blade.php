@@ -3,9 +3,9 @@
 
 <head>
     <!-- META Tags -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {{-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> --}}
     <title>{{ isset($title) ? $title . ' | ' : null }}{{ config('app.name') }}</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    {{-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- SEO -->
@@ -25,7 +25,7 @@
     @endif
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ docsify_assets('css/app.css') }}">
+    <link rel="stylesheet" href="{{ assets('css/app.css') }}">
 
     @if (config('docsify.ui.fav'))
         <!-- Favicon -->
@@ -51,15 +51,14 @@
         @else
             <link rel="stylesheet" href="{{ route('docsify.styles', $name) }}">
         @endif
-    @endforeach
-
+    @endforeach --}}
 </head>
 
 <body>
-    <div id="app" v-cloak>
-        @include('docsify::partials.nav')
+    {{-- <div id="app" v-cloak> --}}
+        @include('docsify::partials.navbar')
 
-        @include('docsify::plugins.search')
+        {{-- @include('docsify::plugins.search')
 
         @yield('content')
 
@@ -97,7 +96,11 @@
 
     <script>
         docsify.run()
-    </script>
+    </script> --}}
+    <div>
+        Start from page
+        @yield('content')
+    </div>
 </body>
 
 </html>

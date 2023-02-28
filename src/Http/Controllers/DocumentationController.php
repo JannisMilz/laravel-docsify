@@ -2,8 +2,8 @@
 
 namespace JannisMilz\Docsify\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
+// use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Gate;
 use JannisMilz\Docsify\Models\Documentation;
 
 class DocumentationController extends Controller
@@ -41,7 +41,7 @@ class DocumentationController extends Controller
             'docsify.show',
             [
                 'version' => config('docsify.versions.default'),
-                'page' => "/"
+                'page' => "index"
             ]
         );
     }
@@ -54,10 +54,10 @@ class DocumentationController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show($version, $page = null)
+    public function show($version, $page = "index")
     {
         $documentation = $this->documentation->getVersionPage($version, $page);
-
+        // dd($documentation->statusCode);
         if ($documentation->statusCode != 200) {
             return abort($documentation->statusCode);
         }
@@ -68,11 +68,11 @@ class DocumentationController extends Controller
 
         return response()->view('docsify::docs', [
             'title'          => $documentation->title,
-            'index'          => $documentation->index,
+            'sidebar'        => $documentation->sidebar,
             'content'        => $documentation->content,
             'currentVersion' => $version,
             'versions'       => $documentation->publishedVersions,
-            'currentSection' => $documentation->currentSection,
+            // 'currentSection' => $documentation->currentSection,
         ], $documentation->statusCode);
     }
 }

@@ -2,8 +2,9 @@
 
 namespace JannisMilz\Docsify\Models;
 
-use Symfony\Component\DomCrawler\Crawler;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\File;
+use Symfony\Component\DomCrawler\Crawler;
 use JannisMilz\Docsify\Contracts\Cache;
 use JannisMilz\Docsify\Traits\HasDocumentationAttributes;
 use JannisMilz\Docsify\Traits\HasMarkdownParser;
@@ -38,6 +39,9 @@ class Documentation
     $this->cache = $cache;
   }
 
+  /**
+   * Get page in version
+   */
   public function getVersionPage($version, $page = null)
   {
     return $this->cache->remember(function () use ($version, $page) {
@@ -45,6 +49,7 @@ class Documentation
 
       if ($this->files->exists($path)) {
         $this->content = $this->parse($this->files->get($path));
+        $this->getVersionSidebar($version);
         $this->preparePageTitle();
 
         return $this;
@@ -55,19 +60,23 @@ class Documentation
     }, 'docsify.docs.' . $version . '.' . $page);
   }
 
+  /**
+   * Get sidebar from version
+   */
   public function getVersionSidebar($version)
   {
     return $this->cache->remember(function () use ($version) {
-      $path = base_path(config('docsify.docs.path') . '/' . $version . '/index.md');
+      $path = base_path(config('docsify.docs.path') . '/' . $version . '/sidebar.md');
 
       if ($this->files->exists($path)) {
-        $parsedContent = $this->parse($this->files->get($path));
+        $this->sidebar = $this->parse($this->files->get($path));
+        // $this->replaceLinks($version, $parsedContent);
 
-        return $this->replaceLinks($version, $parsedContent);
+        return $this;
       }
 
       return null;
-    }, 'docsify.docs.' . $version . '.index');
+    }, 'docsify.docs.' . $version . '.sidebar');
   }
 
   protected function preparePageTitle()
@@ -84,81 +93,81 @@ class Documentation
    */
 
 
-  /**
-   * Get the documentation index page.
-   *
-   * @param  string  $version
-   * @return string
-   */
-  public function getIndex($version)
-  {
-    return $this->cache->remember(function () use ($version) {
-      $path = base_path(config('larecipe.docs.path') . '/' . $version . '/index.md');
+  // /**
+  //  * Get the documentation index page.
+  //  *
+  //  * @param  string  $version
+  //  * @return string
+  //  */
+  // public function getIndex($version)
+  // {
+  //   return $this->cache->remember(function () use ($version) {
+  //     $path = base_path(config('larecipe.docs.path') . '/' . $version . '/index.md');
 
-      if ($this->files->exists($path)) {
-        $parsedContent = $this->parse($this->files->get($path));
+  //     if ($this->files->exists($path)) {
+  //       $parsedContent = $this->parse($this->files->get($path));
 
-        return $this->replaceLinks($version, $parsedContent);
-      }
+  //       return $this->replaceLinks($version, $parsedContent);
+  //     }
 
-      return null;
-    }, 'larecipe.docs.' . $version . '.index');
-  }
+  //     return null;
+  //   }, 'larecipe.docs.' . $version . '.index');
+  // }
 
-  /**
-   * Get the given documentation page.
-   *
-   * @param $version
-   * @param $page
-   * @param array $data
-   * @return mixed
-   */
-  public function get($version, $page, $data = [])
-  {
-    return $this->cache->remember(function () use ($version, $page, $data) {
-      $path = base_path(config('larecipe.docs.path') . '/' . $version . '/' . $page . '.md');
+  // /**
+  //  * Get the given documentation page.
+  //  *
+  //  * @param $version
+  //  * @param $page
+  //  * @param array $data
+  //  * @return mixed
+  //  */
+  // public function get($version, $page, $data = [])
+  // {
+  //   return $this->cache->remember(function () use ($version, $page, $data) {
+  //     $path = base_path(config('larecipe.docs.path') . '/' . $version . '/' . $page . '.md');
 
-      if ($this->files->exists($path)) {
-        $parsedContent = $this->parse($this->files->get($path));
+  //     if ($this->files->exists($path)) {
+  //       $parsedContent = $this->parse($this->files->get($path));
 
-        $parsedContent = $this->replaceLinks($version, $parsedContent);
+  //       $parsedContent = $this->replaceLinks($version, $parsedContent);
 
-        return $this->renderBlade($parsedContent, $data);
-      }
+  //       return $this->renderBlade($parsedContent, $data);
+  //     }
 
-      return null;
-    }, 'larecipe.docs.' . $version . '.' . $page);
-  }
+  //     return null;
+  //   }, 'larecipe.docs.' . $version . '.' . $page);
+  // }
 
-  /**
-   * Replace the version and route placeholders.
-   *
-   * @param  string  $version
-   * @param  string  $content
-   * @return string
-   */
-  public static function replaceLinks($version, $content)
-  {
-    $content = str_replace('{{version}}', $version, $content);
+  // /**
+  //  * Replace the version and route placeholders.
+  //  *
+  //  * @param  string  $version
+  //  * @param  string  $content
+  //  * @return string
+  //  */
+  // public static function replaceLinks($version, $content)
+  // {
+  //   $content = str_replace('{{version}}', $version, $content);
 
-    $content = str_replace('{{route}}', trim(config('larecipe.docs.route'), '/'), $content);
+  //   $content = str_replace('{{route}}', trim(config('larecipe.docs.route'), '/'), $content);
 
-    $content = str_replace('"#', '"' . request()->getRequestUri() . '#', $content);
+  //   $content = str_replace('"#', '"' . request()->getRequestUri() . '#', $content);
 
-    return $content;
-  }
+  //   return $content;
+  // }
 
-  /**
-   * Check if the given section exists.
-   *
-   * @param  string  $version
-   * @param  string  $page
-   * @return bool
-   */
-  public function sectionExists($version, $page)
-  {
-    return $this->files->exists(
-      base_path(config('larecipe.docs.path') . '/' . $version . '/' . $page . '.md')
-    );
-  }
+  // /**
+  //  * Check if the given section exists.
+  //  *
+  //  * @param  string  $version
+  //  * @param  string  $page
+  //  * @return bool
+  //  */
+  // public function sectionExists($version, $page)
+  // {
+  //   return $this->files->exists(
+  //     base_path(config('larecipe.docs.path') . '/' . $version . '/' . $page . '.md')
+  //   );
+  // }
 }

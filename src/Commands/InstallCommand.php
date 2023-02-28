@@ -30,7 +30,7 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->line('📖 Publishing assets and congigurations.. ');
-        $this->call('vendor:publish', ['--provider' => DocsifyServiceProvider::class, '--tag' => ['docsify_config', 'assets', 'views']]);
+        $this->call('vendor:publish', ['--provider' => DocsifyServiceProvider::class, '--tag' => ['config', 'assets', 'views']]);
 
         $this->line('📖 Setup initial documentation structure under ' . config('docsify.docs.path') . '.. ');
         $this->call('docsify:generate');
@@ -39,6 +39,7 @@ class InstallCommand extends Command
         $composer = $this->findComposer();
         $appVersion = explode('.', app()::VERSION);
 
+        // If app version 7+ then run command in array
         $process = new Process($appVersion[0] > 6  ? [$composer . ' dump-autoload'] : $composer . ' dump-autoload');
         $process->setTimeout(null);
         $process->setWorkingDirectory(base_path())->run();

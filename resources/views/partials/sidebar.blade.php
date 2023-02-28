@@ -1,3 +1,3 @@
 <div class="sidebar">
-    {!! $index !!}
+    {!! $sidebar !!}
 </div>
