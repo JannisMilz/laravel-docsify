@@ -37,6 +37,9 @@ class Documentation
   {
     $this->files = $files;
     $this->cache = $cache;
+
+    $this->defaultVersion = config('docsify.versions.default');
+    $this->publishedVersions = config('docsify.versions.published');
   }
 
   /**
@@ -48,7 +51,9 @@ class Documentation
       $path = base_path(config('docsify.docs.path') . '/' . $version . '/' . $page . '.md');
 
       if ($this->files->exists($path)) {
+        $this->version = $version;
         $this->content = $this->parse($this->files->get($path));
+
         $this->getVersionSidebar($version);
         $this->preparePageTitle();
 

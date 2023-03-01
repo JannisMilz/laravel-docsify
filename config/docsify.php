@@ -80,4 +80,28 @@ return [
       'web',
     ]
   ],
+
+  /*
+    |--------------------------------------------------------------------------
+    | Appearance
+    |--------------------------------------------------------------------------
+    |
+    | Here you can add configure the appearance of your docs. For example,
+    | you can set the primary and secondary colors that will give your
+    | documentation a unique look. You can set the fav of your docs.
+    |
+    |
+    */
+
+  'ui'                 => [
+    'default_show_side_bar'  => true,
+    'colors'         => [
+        'primary'    => '#787AF6',
+        'secondary'  => '#2b9cf2',
+        'info'       => '#03a9f4',
+        'warning'    => '#fb6340',
+        'success'    => '#21b978',
+        'danger'     => '#f5365c'
+    ],
+],
 ];

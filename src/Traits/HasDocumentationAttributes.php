@@ -5,16 +5,12 @@ namespace JannisMilz\Docsify\Traits;
 trait HasDocumentationAttributes
 {
   public $title;
+  public $content;
   public $sidebar;
   public $version;
-  public $content;
-  public $docsRoute;
-  public $sectionPage;
   public $defaultVersion;
-  public $currentSection;
-  public $statusCode = 200;
   public $publishedVersions;
-  public $defaultVersionUrl;
+  public $statusCode = 200;
 
   /**
    * @return string
@@ -22,6 +18,14 @@ trait HasDocumentationAttributes
   public function getTitleAttribute()
   {
     return $this->title;
+  }
+
+  /**
+   * @return string
+   */
+  public function getContentAttribute()
+  {
+    return $this->content;
   }
 
   /**
@@ -43,22 +47,6 @@ trait HasDocumentationAttributes
   /**
    * @return string
    */
-  public function getContentAttribute()
-  {
-    return $this->content;
-  }
-
-  /**
-   * @return string
-   */
-  public function getCanonicalAttribute()
-  {
-    return $this->canonical;
-  }
-
-  /**
-   * @return string
-   */
   public function getDefaultVersionUrlAttribute()
   {
     return $this->defaultVersionUrl;
@@ -67,9 +55,9 @@ trait HasDocumentationAttributes
   /**
    * @return string
    */
-  public function getCurrentSectionAttribute()
+  public function getPublishedVersionsAttribute()
   {
-    return $this->currentSection;
+    return $this->publishedVersions;
   }
 
   /**
@@ -78,13 +66,5 @@ trait HasDocumentationAttributes
   public function getStatusCodeAttribute()
   {
     return $this->statusCode;
-  }
-
-  /**
-   * @return string
-   */
-  public function getPublishedVersionsAttribute()
-  {
-    return $this->publishedVersions;
   }
 }

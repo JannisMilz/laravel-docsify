@@ -57,7 +57,7 @@ class DocumentationController extends Controller
     public function show($version, $page = "index")
     {
         $documentation = $this->documentation->getVersionPage($version, $page);
-        // dd($documentation->statusCode);
+
         if ($documentation->statusCode != 200) {
             return abort($documentation->statusCode);
         }
@@ -72,7 +72,6 @@ class DocumentationController extends Controller
             'content'        => $documentation->content,
             'currentVersion' => $version,
             'versions'       => $documentation->publishedVersions,
-            // 'currentSection' => $documentation->currentSection,
         ], $documentation->statusCode);
     }
 }
