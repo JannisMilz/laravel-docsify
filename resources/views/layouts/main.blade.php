@@ -5,11 +5,11 @@
     <!-- META Tags -->
     {{-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> --}}
     <title>{{ isset($title) ? $title . ' | ' : null }}{{ config('app.name') }}</title>
-    {{-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- SEO -->
-    <meta name="author" content="{{ config('docsify.seo.author') }}">
+    {{-- <meta name="author" content="{{ config('docsify.seo.author') }}">
     <meta name="description" content="{{ config('docsify.seo.description') }}">
     <meta name="keywords" content="{{ config('docsify.seo.keywords') }}">
     <meta name="twitter:card" value="summary">
@@ -22,30 +22,24 @@
                 <meta property="og:{{ $key }}" content="{{ $value }}" />
             @endif
         @endforeach
-    @endif
+    @endif --}}
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ assets('css/app.css') }}">
+    <link rel="stylesheet" href="{{ '/vendor/jannismilz/laravel-docsify/assets/css/app.css' }}">
 
-    @if (config('docsify.ui.fav'))
+    {{-- @if (config('docsify.ui.fav'))
         <!-- Favicon -->
         <link rel="apple-touch-icon" href="{{ asset(config('docsify.ui.fav')) }}">
         <link rel="shortcut icon" type="image/png" href="{{ asset(config('docsify.ui.fav')) }}" />
-    @endif
-
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="{{ docsify_assets('css/font-awesome.css') }}">
-    @if (config('docsify.ui.fa_v4_shims', true))
-        <link rel="stylesheet" href="{{ docsify_assets('css/font-awesome-v4-shims.css') }}">
-    @endif
+    @endif --}}
 
     <!-- Dynamic Colors -->
-    @include('docsify::style')
+    @include('docsify::partials.style')
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @foreach (docsify::allStyles() as $name => $path)
+    {{-- @foreach (docsify::allStyles() as $name => $path)
         @if (preg_match('/^https?:\/\//', $path))
             <link rel="stylesheet" href="{{ $path }}">
         @else
@@ -56,9 +50,9 @@
 
 <body>
     {{-- <div id="app" v-cloak> --}}
-        @include('docsify::partials.navbar')
+    @include('docsify::partials.navbar')
 
-        {{-- @include('docsify::plugins.search')
+    {{-- @include('docsify::plugins.search')
 
         @yield('content')
 
@@ -80,8 +74,6 @@
         }
     </script>
 
-    <script src="{{ docsify_assets('js/app.js') }}"></script>
-
     <script>
         window.docsify = new Createdocsify(config)
     </script>
@@ -97,6 +89,9 @@
     <script>
         docsify.run()
     </script> --}}
+
+    <script src="{{ '/vendor/jannismilz/laravel-docsify/assets/js/index.js' }}"></script>
+
     <div>
         Start from page
         @yield('content')

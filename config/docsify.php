@@ -96,12 +96,12 @@ return [
   'ui'                 => [
     'default_show_side_bar'  => true,
     'colors'         => [
-        'primary'    => '#787AF6',
-        'secondary'  => '#2b9cf2',
-        'info'       => '#03a9f4',
-        'warning'    => '#fb6340',
-        'success'    => '#21b978',
-        'danger'     => '#f5365c'
+      'primary'    => '#787AF6',
+      'secondary'  => '#2b9cf2',
+      'info'       => '#03a9f4',
+      'warning'    => '#fb6340',
+      'success'    => '#21b978',
+      'danger'     => '#f5365c'
     ],
-],
+  ],
 ];

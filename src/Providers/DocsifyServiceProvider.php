@@ -64,15 +64,11 @@ class DocsifyServiceProvider extends ServiceProvider
     protected function registerPublishableResources()
     {
         $publishable = [
-            'config' => [
+            'docsify_config' => [
                 __DIR__ . "/../../config/docsify.php" => config_path('docsify.php'),
             ],
-            // 'assets' => [
-            //     __DIR__ . "/../../resources/css/app.css" => resource_path('css/app.css'),
-            //     __DIR__ . "/../../resources/js/app.js" => resource_path('js/app.js'),
-            // ],
-            'views' => [
-                __DIR__ . "/../../resources/views" => resource_path('views/vendor/docsify'),
+            'docsify_assets' => [
+                __DIR__ . "/../../public/assets/" => public_path('vendor/jannismilz/laravel-docsify/assets'),
             ],
         ];
 
