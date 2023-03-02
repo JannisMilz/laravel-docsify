@@ -1,2 +1,2 @@
-- ## First section
-    - [First page](/{{route}}/{{version}}/index.md)
+- ## Sidebar section title
+    - [Home](/{{route}}/{{version}}/index.md)
