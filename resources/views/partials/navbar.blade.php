@@ -18,27 +18,27 @@
         </div>
 
         <div class="block mx-4 flex items-center">
-            {{-- versions dropdown --}}
-            <larecipe-dropdown>
+            {{-- <larecipe-dropdown>
                 <larecipe-button type="primary" class="flex">
                     {{ $currentVersion }} <i class="mx-1 fa fa-angle-down"></i>
                 </larecipe-button>
 
                 <template slot="list">
                     <ul class="list-reset">
-                        {{-- @foreach ($versions as $version)
+                        @foreach ($versions as $version)
                             <li class="py-2 hover:bg-grey-lightest">
                                 <a class="px-6 text-grey-darkest"
                                     href="{{ route('larecipe.show', ['version' => $version, 'page' => $currentSection]) }}">{{ $version }}</a>
                             </li>
-                        @endforeach --}}
+                        @endforeach
                     </ul>
                 </template>
-            </larecipe-dropdown>
-            {{-- /versions dropdown --}}
+            </larecipe-dropdown> --}}
 
-            @auth
-                {{-- account --}}
+            <div>
+                User Auth
+            </div>
+            {{-- @auth
                 <larecipe-dropdown>
                     <larecipe-button type="white" class="ml-2">
                         {{ auth()->user()->name ?? 'Account' }} <i class="fa fa-angle-down"></i>
@@ -53,8 +53,7 @@
                         </form>
                     </template>
                 </larecipe-dropdown>
-                {{-- /account --}}
-            @endauth
+            @endauth --}}
         </div>
     </nav>
 </div>

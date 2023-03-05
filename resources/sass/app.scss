@@ -2,10 +2,278 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    @apply bg-green-200;
+/**************************************/
+/**************** Root ****************/
+/**************************************/
+:root {
+    --black: #22292f;
+    --white: white;
+    --primary: #787af6;
+    --secondary: #2b9cf2;
+    --info: #03a9f4;
+    --warning: #fb6340;
+    --success: #21b978;
+    --danger: #f5365c;
+
+    --sidebar: #f4f5f7;
+    --documentation: rgb(254, 254, 254);
+    --navbar: white;
 }
 
-h2 {
-    @apply text-red-600;
+/**************************************/
+/*************** Global ***************/
+/**************************************/
+html,
+body {
+    @apply bg-documentation;
+}
+
+a {
+    @apply no-underline;
+}
+
+// /**************************************/
+// /*************** Sidebar **************/
+// /**************************************/
+.sidebar {
+    @apply bg-sidebar border-r border-gray-500 w-64 fixed z-10 text-base mt-16 overflow-y-auto py-8;
+    transition: all 0.2s;
+
+    &.is-hidden {
+        left: -16rem;
+    }
+
+    > ul {
+        > li {
+            > h2 {
+                @apply p-5 text-gray-500 text-base mb-0;
+            }
+
+            > ul {
+                @apply leading-loose;
+
+                > li {
+                    &.is-active {
+                        @apply pl-2;
+
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            z-index: 100;
+                            width: 2px;
+                            height: 35px;
+                            background: var(--primary);
+                        }
+
+                        a {
+                            @apply font-bold;
+                        }
+
+                        > ul > li {
+                            @apply -ml-2;
+                            a {
+                                @apply font-normal;
+                            }
+                        }
+                    }
+
+                    a {
+                        @apply text-base font-thin text-gray-500 py-0 px-8 block;
+
+                        transition: padding-left 0.3s;
+
+                        &:hover {
+                            padding-left: 2.25rem;
+                        }
+                    }
+
+                    ul {
+                        > li {
+                            @apply pl-4;
+
+                            &.is-active {
+                                @apply border-l-2 border-primary;
+
+                                a {
+                                    @apply font-bold;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// /**************************************/
+// /************** Buttons ***************/
+// /**************************************/
+.button {
+    @apply py-3 px-6 rounded shadow;
+    transition: all 0.1s;
+
+    &:hover {
+        transform: translateY(-1px);
+        @apply shadow-md;
+    }
+
+    &:focus {
+        @apply outline-none;
+    }
+
+    &.is-link {
+        @apply bg-transparent text-gray-500 shadow-none;
+    }
+    &.is-white {
+        @apply bg-gray-300 text-gray-500;
+    }
+    &.is-black {
+        @apply bg-gray-700 text-white;
+    }
+    &.is-primary {
+        @apply bg-primary text-white;
+    }
+    &.is-secondary {
+        @apply bg-secondary text-white;
+    }
+    &.is-success {
+        @apply bg-success text-white;
+    }
+    &.is-info {
+        @apply bg-info text-white;
+    }
+    &.is-warning {
+        @apply bg-warning text-white;
+    }
+    &.is-danger {
+        @apply bg-danger text-white;
+    }
+}
+
+// /**************************************/
+// /************** Tables ****************/
+// /**************************************/
+table {
+    @apply shadow-lg bg-white w-full p-4 my-4;
+    transition: box-shadow 0.1s;
+
+    &:hover {
+        @apply shadow;
+    }
+
+    tr,
+    td,
+    th {
+        @apply border border-gray-300;
+
+        &:hover {
+            @apply bg-gray-200;
+        }
+    }
+
+    td,
+    th {
+        @apply p-4;
+    }
+}
+
+// /**************************************/
+// /*********** Medium-Zoom **************/
+// /**************************************/
+
+.medium-zoom-overlay,
+img.medium-zoom-image--opened {
+    z-index: 10;
+}
+
+// /**************************************/
+// /********** Documentation *************/
+// /**************************************/
+.documentation {
+    @apply bg-documentation static my-32 pl-48 w-3/4;
+    transition: padding-left 0.2s;
+
+    &.expanded {
+        @apply pl-20;
+    }
+
+    h1:first-of-type {
+        @apply border-l-2 border-primary pl-4 mb-6 font-bold;
+    }
+
+    h2 {
+        @apply mt-10 mb-4 font-bold;
+
+        a,
+        a:hover {
+            @apply text-gray-600 no-underline;
+        }
+
+        a:before {
+            content: "#";
+            @apply -ml-4 mt-1 absolute text-base text-primary opacity-75;
+        }
+    }
+
+    h3 {
+        @apply mt-10 mb-4;
+    }
+
+    hr {
+        @apply border-t-2 border-dashed border-gray-300 my-4;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    & > ul:first-of-type {
+        @apply fixed p-4 w-1/5;
+        top: 100px;
+        right: 30px;
+
+        li {
+            @apply border-b border-dashed border-gray-300 leading-normal p-3;
+
+            a {
+                @apply text-sm text-gray-500;
+            }
+        }
+
+        ul {
+            @apply pl-4;
+        }
+    }
+
+    :not(pre) > code {
+        @apply bg-gray-300 px-2 rounded text-primary leading-normal;
+        padding-top: 0.1rem;
+        padding-bottom: 0.1rem;
+        line-height: 1.6;
+    }
+
+    ul > li,
+    ol > li {
+        @apply py-2;
+    }
+
+    p {
+        @apply text-base leading-loose;
+    }
+}
+
+@media (max-width: 780px) {
+    .documentation {
+        padding: 0 40px !important;
+        @apply w-full;
+
+        > ul:first-of-type {
+            @apply w-full;
+            position: inherit;
+            top: 10px;
+            right: 30px;
+        }
+    }
 }
