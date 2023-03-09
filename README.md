@@ -1,11 +1,5 @@
-## Installation
+_In development_
 
-`<install cmd>`
+## Credits
 
-**Configure TailwindCSS**
-
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
+Forked from @saleem-hadad [@saleem-hadad](https://github.com/saleem-hadad)'s [LaRecipe](https://github.com/saleem-hadad/larecipe).
