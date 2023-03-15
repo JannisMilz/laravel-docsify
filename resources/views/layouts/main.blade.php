@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -93,7 +93,6 @@
     <script src="{{ '/vendor/jannismilz/laravel-docsify/assets/js/index.js' }}"></script>
 
     <div>
-        Start from page
         @yield('content')
     </div>
 </body>

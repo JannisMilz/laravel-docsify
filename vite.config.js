@@ -4,9 +4,9 @@ import laravel from "laravel-vite-plugin";
 export default defineConfig({
     plugins: [
         laravel({
-            input: ["resources/sass/app.scss", "resources/ts/script.ts"],
-            publicDirectory: "./",
-            buildDirectory: "public",
+            input: ["resources/sass/app.scss", "resources/ts/index.ts"],
+            publicDirectory: "../../../public/",
+            buildDirectory: "vendor/jannismilz/laravel-docsify",
             refresh: true,
         }),
     ],

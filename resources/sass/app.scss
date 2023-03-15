@@ -36,7 +36,7 @@ a {
 // /*************** Sidebar **************/
 // /**************************************/
 .sidebar {
-    @apply bg-sidebar border-r border-gray-500 w-64 fixed z-10 text-base mt-16 overflow-y-auto py-8;
+    @apply bg-sidebar border-r border-gray-500 w-64 fixed z-10 text-base top-0 bottom-0 left-0 mt-16 overflow-y-auto py-8;
     transition: all 0.2s;
 
     &.is-hidden {
@@ -192,7 +192,7 @@ img.medium-zoom-image--opened {
 // /********** Documentation *************/
 // /**************************************/
 .documentation {
-    @apply bg-documentation static my-32 pl-48 w-3/4;
+    @apply bg-documentation static my-28 pl-80 w-[95%];
     transition: padding-left 0.2s;
 
     &.expanded {
@@ -203,8 +203,21 @@ img.medium-zoom-image--opened {
         @apply border-l-2 border-primary pl-4 mb-6 font-bold;
     }
 
-    h2 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         @apply mt-10 mb-4 font-bold;
+    }
+
+    h1 {
+        @apply text-4xl;
+    }
+
+    h2 {
+        @apply text-3xl;
 
         a,
         a:hover {
@@ -218,7 +231,19 @@ img.medium-zoom-image--opened {
     }
 
     h3 {
-        @apply mt-10 mb-4;
+        @apply text-2xl;
+    }
+
+    h4 {
+        @apply text-xl;
+    }
+
+    h5 {
+        @apply text-lg;
+    }
+
+    h6 {
+        @apply text-base;
     }
 
     hr {
@@ -262,18 +287,258 @@ img.medium-zoom-image--opened {
     p {
         @apply text-base leading-loose;
     }
+
+    blockquote {
+        @apply border-l-2 border-gray-400 pl-4 italic my-4;
+
+        p {
+            @apply leading-7;
+        }
+    }
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+    text-shadow: none;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+    background: #344258 !important;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+    color: #ccc;
+    background: none;
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+    padding: 1em;
+    margin: 0.5em 0;
+    overflow: auto;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+    padding: 0.1em;
+    border-radius: 0.3em;
+    white-space: normal;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #999;
+}
+
+.token.punctuation {
+    color: #ccc;
+}
+
+.token.tag,
+.token.attr-name,
+.token.namespace,
+.token.deleted {
+    color: #e2777a;
+}
+
+.token.function-name {
+    color: #6196cc;
+}
+
+.token.boolean,
+.token.number,
+.token.function {
+    color: #f08d49;
+}
+
+.token.property,
+.token.class-name,
+.token.constant,
+.token.symbol {
+    color: #f8c555;
+}
+
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword,
+.token.builtin {
+    color: #cc99cd;
+}
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.variable {
+    color: #7ec699;
+}
+
+.token.operator,
+.token.entity,
+.token.url {
+    color: #67cdcc;
+}
+
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
+
+.token.inserted {
+    color: green;
+}
+
+pre[data-line] {
+    position: relative;
+    padding: 1em 0 1em 3em;
+}
+
+.line-highlight {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: inherit 0;
+    margin-top: 1em; /* Same as .prism’s padding-top */
+
+    background: hsla(24, 20%, 50%, 0.08);
+    background: linear-gradient(
+        to right,
+        hsla(24, 20%, 50%, 0.1) 70%,
+        hsla(24, 20%, 50%, 0)
+    );
+
+    pointer-events: none;
+
+    line-height: inherit;
+    white-space: pre;
+}
+
+.line-highlight:before,
+.line-highlight[data-end]:after {
+    content: attr(data-start);
+    position: absolute;
+    top: 0.4em;
+    left: 0.6em;
+    min-width: 1em;
+    padding: 0 0.5em;
+    background-color: hsla(24, 20%, 50%, 0.4);
+    color: hsl(24, 20%, 95%);
+    font: bold 65%/1.5 sans-serif;
+    text-align: center;
+    vertical-align: 0.3em;
+    border-radius: 999px;
+    text-shadow: none;
+    box-shadow: 0 1px white;
+}
+
+.line-highlight[data-end]:after {
+    content: attr(data-end);
+    top: auto;
+    bottom: 0.4em;
+}
+
+.line-numbers .line-highlight:before,
+.line-numbers .line-highlight:after {
+    content: none;
+}
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.line-numbers-rows > span {
+    pointer-events: none;
+    display: block;
+    counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+    content: counter(linenumber);
+    color: #999;
+    display: block;
+    padding-right: 0.8em;
+    text-align: right;
+}
+
+[v-cloak] > * {
+    display: none;
+}
+
+[v-cloak]::before {
+    content: " ";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #f2f6fa;
 }
 
 @media (max-width: 780px) {
     .documentation {
         padding: 0 40px !important;
-        @apply w-full;
 
-        > ul:first-of-type {
-            @apply w-full;
-            position: inherit;
-            top: 10px;
-            right: 30px;
-        }
+        // > ul:first-of-type {
+        //     @apply w-full;
+        //     position: inherit;
+        //     top: 10px;
+        //     right: 30px;
+        // }
     }
 }

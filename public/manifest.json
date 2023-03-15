@@ -4,9 +4,9 @@
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
-  "resources/ts/script.ts": {
-    "file": "assets/js/script.js",
+  "resources/ts/index.ts": {
+    "file": "assets/js/index.js",
     "isEntry": true,
-    "src": "resources/ts/script.ts"
+    "src": "resources/ts/index.ts"
   }
 }

@@ -1,7 +1,5 @@
-<div class="fixed pin-t pin-x z-40">
-    <div class="bg-gradient-primary text-white h-1"></div>
-
-    <nav class="flex items-center justify-between text-black bg-navbar shadow-xs h-16">
+<div class="fixed top-0 z-40 w-full">
+    <nav class="navbar flex items-center justify-between text-black bg-red-400 shadow-xs h-16">
         <div class="flex items-center flex-no-shrink">
             <a href="{{ url('/') }}" class="flex items-center flex-no-shrink text-black mx-4">
                 {{-- @include('docsify::partials.logo') --}}
@@ -17,7 +15,7 @@
             </div>
         </div>
 
-        <div class="block mx-4 flex items-center">
+        <div class="mx-4 flex items-center">
             {{-- <larecipe-dropdown>
                 <larecipe-button type="primary" class="flex">
                     {{ $currentVersion }} <i class="mx-1 fa fa-angle-down"></i>

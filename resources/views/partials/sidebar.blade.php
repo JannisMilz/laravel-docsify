@@ -1,3 +1,3 @@
-<div class="sidebar">
+<div id="sidebar" class="sidebar">
     {!! $sidebar !!}
 </div>
